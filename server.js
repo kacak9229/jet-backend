@@ -1,7 +1,7 @@
 /* Module dependecies */
 const express = require('express');
 const mongoose = require('mongoose');
-const morgan = require('morgan');
+const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 /* Custom module */
@@ -10,7 +10,9 @@ const config = require('./config/secret');
 /* Instance of express / create express server */
 const app = express();
 
-mongoose.connect(config.database, { useNewUrlParser: true }, (err) => {
+mongoose.connect(config.database, {
+  useNewUrlParser: true
+}, (err) => {
   if (err) {
     console.log("Error connected");
   } else {
@@ -19,16 +21,18 @@ mongoose.connect(config.database, { useNewUrlParser: true }, (err) => {
 });
 
 /* Middleware */
-app.use(morgan('dev')); // Set to dev for debugging
+app.use(logger('dev')); // Set to dev for debugging
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 const mainRoute = require('./routes/api');
 
 /* App routes */
 app.use('/api', mainRoute);
 
-app.listen(config.port, function(err) {
+app.listen(config.port, function (err) {
   if (err) {
     console.log(err);
   } else {
