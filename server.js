@@ -32,8 +32,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-
 const mainRoute = require('./src/routes/api');
 
 /* App routes */
