@@ -10,7 +10,7 @@ const config = require('./config/secret');
 /* Instance of express / create express server */
 const app = express();
 
-mongoose.connect(config.database, function(err) {
+mongoose.connect(config.database, { useNewUrlParser: true }, (err) => {
   if (err) {
     console.log("Error connected");
   } else {
