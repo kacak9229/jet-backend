@@ -12,6 +12,7 @@ const config = require('./src/config/secret');
 /* Instance of express / create express server */
 const app = express();
 
+/* Connect to the database */
 mongoose.connect(config.database, {
   useNewUrlParser: true
 }, (err) => {
@@ -23,11 +24,15 @@ mongoose.connect(config.database, {
 });
 
 /* Middleware */
+app.use(helmet());
+app.use(cors());
 app.use(logger('dev')); // Set to dev for debugging
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+
 
 const mainRoute = require('./src/routes/api');
 

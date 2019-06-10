@@ -10,7 +10,7 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
   title: String,
   description: String,
-  created: Date.now,
+  created: Date,
 });
 
 
