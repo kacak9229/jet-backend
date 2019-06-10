@@ -3,9 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const helmet = require('helmet')
+const cors = require('cors');
 
 /* Custom module */
-const config = require('./config/secret');
+const config = require('./src/config/secret');
 
 /* Instance of express / create express server */
 const app = express();
@@ -27,7 +29,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-const mainRoute = require('./routes/api');
+const mainRoute = require('./src/routes/api');
 
 /* App routes */
 app.use('/api', mainRoute);
