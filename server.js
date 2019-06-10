@@ -34,7 +34,7 @@ const mainRoute = require('./src/routes/api');
 /* App routes */
 app.use('/api', mainRoute);
 
-app.listen(config.port, function (err) {
+app.listen(config.port, (err) => {
   if (err) {
     console.log(err);
   } else {
